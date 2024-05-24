@@ -1,0 +1,15 @@
+{
+  "name": "obtypes-generator",
+  "version": "1.0.0",
+  "description": "Generator script for obtypes package",
+  "main": "generator.js",
+  "type": "module",
+  "scripts": {
+    "generate": "node generator.js"
+  },
+  "author": "OB",
+  "private": true,
+  "dependencies": {
+    "openapi-typescript": "6.7.5"
+  }
+}
