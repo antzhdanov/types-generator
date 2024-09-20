@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 import fs from 'node:fs';
 import path from 'node:path';
-import openapiTS from 'openapi-typescript';
+import openapiTS, { astToString } from 'openapi-typescript';
 import { fileURLToPath } from 'url';
 
-const USAGE = `Usage: node generateTypes.mjs path/to/schema/file.yaml [path/to/output/file.js] [--skip-failure]
+const USAGE = `Usage: node generator.js path/to/schema/file.yaml [path/to/output/file.js] [--skip-failure]
 
 Flags:
   --skip-failure: ignore failures during types generation
@@ -27,8 +27,8 @@ try {
   }
 
   console.log('Generating types...');
-
-  const contents = await openapiTS(new URL(SCHEMA_YAML_PATH, import.meta.url));
+  const ast = await openapiTS(new URL(SCHEMA_YAML_PATH, import.meta.url), { enum: true });
+  const contents = astToString(ast);
   fs.writeFileSync(TYPES_PATH, contents);
 
   console.log(`Successfully created ${TYPES_PATH}.`);
