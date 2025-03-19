@@ -10,7 +10,7 @@
   "author": "OB",
   "private": true,
   "dependencies": {
-    "openapi-typescript": "7.0.0-rc.0",
+    "openapi-typescript": "7.6.1",
     "typescript": "5.4.5"
   }
 }
