@@ -1,0 +1,16 @@
+{
+  "name": "types-generator",
+  "version": "1.0.0",
+  "description": "Generator script for types package",
+  "main": "generator.js",
+  "type": "module",
+  "scripts": {
+    "generate": "node generator.js"
+  },
+  "author": "antzhdanov",
+  "private": false,
+  "dependencies": {
+    "openapi-typescript": "7.6.1",
+    "typescript": "5.4.5"
+  }
+}
