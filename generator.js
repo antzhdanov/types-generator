@@ -10,15 +10,15 @@ Flags:
   --skip-failure: ignore failures during types generation
 
 ENV variables (optional):
-  OBTYPES_SCHEMA_YAML_PATH - path to schema YAML
-  OBTYPES_OUTPUT_PATH - path to output file
+  TYPES_SCHEMA_YAML_PATH - path to schema YAML
+  TYPES_OUTPUT_PATH - path to output file
 `;
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
-const SCHEMA_YAML_PATH = process.argv[2] || process.env.OBTYPES_SCHEMA_YAML_PATH;
+const SCHEMA_YAML_PATH = process.argv[2] || process.env.TYPES_SCHEMA_YAML_PATH;
 const TYPES_PATH =
-  process.argv[3] || process.env.OBTYPES_OUTPUT_PATH || path.join(dirname, 'index.ts');
+  process.argv[3] || process.env.TYPES_OUTPUT_PATH || path.join(dirname, 'index.ts');
 
 try {
   if (!SCHEMA_YAML_PATH || !TYPES_PATH) {
