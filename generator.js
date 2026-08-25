@@ -12,6 +12,7 @@ Flags:
 ENV variables (optional):
   TYPES_SCHEMA_YAML_PATH - path to schema YAML
   TYPES_OUTPUT_PATH - path to output file
+  TYPES_OUTPUT_ENUMS - whether enums are generated
 `;
 
 const filename = fileURLToPath(import.meta.url);
@@ -19,6 +20,7 @@ const dirname = path.dirname(filename);
 const SCHEMA_YAML_PATH = process.argv[2] || process.env.TYPES_SCHEMA_YAML_PATH;
 const TYPES_PATH =
   process.argv[3] || process.env.TYPES_OUTPUT_PATH || path.join(dirname, 'index.ts');
+const OUTPUT_ENUMS = process.env.TYPES_OUTPUT_ENUMS?.toLowerCase() === 'true';
 
 try {
   if (!SCHEMA_YAML_PATH || !TYPES_PATH) {
@@ -27,7 +29,7 @@ try {
   }
 
   console.log('Generating types...');
-  const ast = await openapiTS(new URL(SCHEMA_YAML_PATH, import.meta.url), { enum: true });
+  const ast = await openapiTS(new URL(SCHEMA_YAML_PATH, import.meta.url), { enum: OUTPUT_ENUMS });
   const contents = astToString(ast);
   fs.writeFileSync(TYPES_PATH, contents);
 
